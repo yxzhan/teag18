@@ -23,7 +23,25 @@
       <div id="gameContainer" style="width: 960px; height: 540px"></div>
       <div class="footer">
         <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title updated-time"></div>
       </div>
     </div>
   </body>
+  <script>
+        var url = "https://api.github.com/repos/yxzhan/teag18";
+        var oReq = new XMLHttpRequest();
+        function reqListener () {
+            try {
+                var resObj = JSON.parse(this.responseText);
+                var d = new Date(resObj.updated_at);
+                var str = "Updated at: " + d.toUTCString();
+                document.querySelectorAll('.updated-time')[0].innerHTML = str;
+            }catch(e) {
+                console.log(e);
+            }
+        }   
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", url);
+        oReq.send();
+  </script>
 </html>
