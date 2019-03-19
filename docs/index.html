@@ -34,7 +34,7 @@
             try {
                 var resObj = JSON.parse(this.responseText);
                 var d = new Date(resObj.updated_at);
-                var str = "Updated at: " + d.toUTCString();
+                var str = "Updated at: " + d.toLocaleString("en-US", {timeZone: "Europe/Berlin"});
                 document.querySelectorAll('.updated-time')[0].innerHTML = str;
             }catch(e) {
                 console.log(e);
